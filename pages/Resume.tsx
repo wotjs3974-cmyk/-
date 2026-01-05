@@ -96,7 +96,7 @@ const Resume: React.FC = () => {
         {/* 메인 섹션: 경험 */}
         <main className="md:col-span-8 space-y-24">
           <section className="space-y-16">
-            <h2 className="text-lg md:text-xl font-black uppercase tracking-[0.15em] text-[#11d493] italic border-b border-[#11d493]/20 pb-4">경력 및 프로젝트 (Experience)</h2>
+            <h2 className="text-sm font-black uppercase tracking-[0.15em] text-[#11d493] italic border-b border-[#11d493]/20 pb-4">경력 및 프로젝트 (Experience)</h2>
             <div className="space-y-20">
               {data.experience.map((exp, i) => (
                 <div key={i} className="group relative">
