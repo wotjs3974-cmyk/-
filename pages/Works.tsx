@@ -16,31 +16,37 @@ const Works: React.FC = () => {
     <div className="pt-40 text-center text-neutral-500 font-black tracking-tighter">NO WORKS REGISTERED.</div>
   );
 
-  // 강력한 유튜브 ID 추출 함수 (Admin과 동일한 로직 적용)
+  // 강력한 유튜브 ID 추출 함수 (해외 전문가 권장 정규식 포함)
   const extractYoutubeId = (input: string) => {
     if (!input) return '';
     let target = input.trim();
+    
+    // <iframe> 태그인 경우 src 내용만 먼저 추출
     if (target.includes('<iframe')) {
       const srcMatch = target.match(/src=["']([^"']+)["']/);
       if (srcMatch) target = srcMatch[1];
     }
+
+    // 유튜브 ID 추출 정규식 (watch, shorts, embed, youtu.be 모두 대응)
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const match = target.match(regExp);
+    
+    // 8번째 캡처 그룹이 11자리 ID임
     const id = (match && match[8] && match[8].length === 11) ? match[8] : target.trim();
     return id.length === 11 ? id : '';
   };
 
+  // 오류 153 해결 및 보안을 위한 임베드 URL 생성기
   const getEmbedUrl = (input: string) => {
     const videoId = extractYoutubeId(input);
-    if (!videoId) return input;
+    if (!videoId) return '';
 
-    // 오류 153 해결을 위한 보안 파라미터 구성
     const origin = window.location.origin;
     const params = new URLSearchParams({
       rel: '0',
       modestbranding: '1',
-      enablejsapi: '1', // API 핸드쉐이크 허용
-      origin: origin,   // 보안을 위한 필수 파라미터
+      enablejsapi: '1', // API 핸드쉐이크 허용 (오류 153 방지)
+      origin: origin,   // 필수 보안 파라미터
       autoplay: '0'
     });
 
@@ -51,6 +57,8 @@ const Works: React.FC = () => {
     <div className="pt-20 min-h-screen bg-black overflow-x-hidden">
       {items.map((item, idx) => {
         const videoId = extractYoutubeId(item.videoUrl);
+        const embedUrl = getEmbedUrl(item.videoUrl);
+
         return (
           <section key={item.id} className="min-h-screen flex flex-col items-center justify-start py-32 px-6 border-b border-white/5 last:border-0 animate-in fade-in duration-1000">
             <div className="max-w-6xl w-full">
@@ -61,24 +69,26 @@ const Works: React.FC = () => {
                 <p className="text-neutral-500 text-2xl md:text-3xl font-black tracking-tight uppercase">{item.subtitle}</p>
               </div>
 
-              {/* Video Player - 16:9 Responsive */}
-              <div className="w-full aspect-[16/9] bg-neutral-900 rounded-[32px] overflow-hidden border border-white/10 shadow-[0_60px_120px_rgba(0,0,0,0.9)] mb-32 relative group">
-                <iframe 
-                  key={videoId || item.id} // ID 변경 시 iframe 완전 재렌더링 강제
-                  className="absolute inset-0 w-full h-full"
-                  src={getEmbedUrl(item.videoUrl)} 
-                  title={item.title}
-                  frameBorder="0"
-                  // 중요: 보안 정책 완화하여 유튜브 서버와의 통신 허용
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
+              {/* Video Player */}
+              <div className="w-full aspect-[16/9] bg-neutral-900 rounded-[32px] overflow-hidden border border-white/10 shadow-[0_60px_120px_rgba(0,0,0,0.9)] mb-32 relative">
+                {embedUrl ? (
+                  <iframe 
+                    key={videoId || item.id} // 비디오 변경 시 강제 재렌더링
+                    className="absolute inset-0 w-full h-full"
+                    src={embedUrl}
+                    title={item.title}
+                    frameBorder="0"
+                    referrerPolicy="strict-origin-when-cross-origin" // 보안 정책
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-neutral-700 font-black">VIDEO NOT FOUND</div>
+                )}
               </div>
 
               {/* Detailed Content */}
               <div className="space-y-40">
-                {/* Main Intent Highlight */}
                 <div className="max-w-5xl mx-auto text-center">
                   <h2 className="text-[10px] font-black uppercase tracking-[0.8em] text-accent-green/40 mb-12">CORE INTENT</h2>
                   <p className="text-4xl md:text-7xl font-black text-white leading-[1.05] tracking-tighter whitespace-pre-line uppercase">
@@ -86,7 +96,6 @@ const Works: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Dynamic Details - Large Text, No Icons */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
                   {item.details.map((detail, dIdx) => (
                     <div key={dIdx} className="space-y-6 text-center md:text-left">
@@ -96,7 +105,6 @@ const Works: React.FC = () => {
                   ))}
                 </div>
 
-                {/* CTA Button */}
                 {(item.ctaButtonName && item.ctaLink) && (
                   <div className="flex justify-center pt-20">
                     <Link 
