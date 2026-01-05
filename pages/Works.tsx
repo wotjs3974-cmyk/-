@@ -108,8 +108,8 @@ const Works: React.FC = () => {
         </div>
 
         {/* Project Header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-5xl md:text-8xl font-black text-white mb-4 tracking-tighter leading-none uppercase italic">
+        <div className="mb-24 text-center">
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-none uppercase italic">
             {item.title}
           </h1>
           <p className="text-neutral-500 text-sm md:text-base font-black tracking-[0.3em] uppercase italic opacity-80">
@@ -118,7 +118,7 @@ const Works: React.FC = () => {
         </div>
 
         {/* Video Player */}
-        <div className="w-full aspect-[16/9] bg-neutral-900 rounded-none overflow-hidden border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.8)] mb-40 relative group">
+        <div className="w-full aspect-[16/9] bg-neutral-900 rounded-none overflow-hidden border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.8)] mb-48 relative group">
           <div className="absolute inset-0 bg-[#11d493]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10"></div>
           {embedUrl ? (
             <iframe 
@@ -137,21 +137,21 @@ const Works: React.FC = () => {
         </div>
 
         {/* Content Section */}
-        <div className="space-y-32">
+        <div className="space-y-48">
           {/* Section: Project Intent (Highlight) */}
           <div className="max-w-4xl mx-auto">
-             <h2 className="text-[10px] font-black text-[#11d493] tracking-[0.5em] uppercase italic mb-6 text-center opacity-70">Project Intent</h2>
+             <h2 className="text-[10px] font-black text-[#11d493] tracking-[0.5em] uppercase italic mb-12 text-center opacity-70">Project Intent</h2>
              <div className="text-center">
-               <p className="text-3xl md:text-5xl font-black text-white leading-[1.2] tracking-tighter whitespace-pre-line uppercase italic">
+               <p className="text-3xl md:text-5xl font-black text-white leading-[1.5] tracking-tighter whitespace-pre-line uppercase italic">
                 "{item.intent}"
                </p>
              </div>
           </div>
 
           {/* Details Section - 가독성 및 계층 구조 최적화 */}
-          <div className="max-w-4xl mx-auto w-full space-y-20 border-t border-white/5 pt-32">
+          <div className="max-w-4xl mx-auto w-full space-y-24 border-t border-white/5 pt-32">
             {item.details.map((detail, dIdx) => (
-              <div key={dIdx} className="space-y-6 group border-l-2 border-white/10 pl-10 hover:border-[#11d493]/40 transition-all duration-500">
+              <div key={dIdx} className="space-y-8 group border-l-2 border-white/10 pl-10 hover:border-[#11d493]/40 transition-all duration-500">
                 <h3 className="text-xl md:text-3xl font-black text-[#11d493] tracking-tight uppercase italic opacity-70 group-hover:opacity-100 transition-all">
                   {detail.label || 'INFO'}
                 </h3>
