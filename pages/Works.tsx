@@ -140,10 +140,12 @@ const Works: React.FC = () => {
         <div className="space-y-48">
           {/* Section: Project Intent (Highlight) */}
           <div className="max-w-4xl mx-auto">
-             <h2 className="text-[10px] font-black text-[#11d493] tracking-[0.5em] uppercase italic mb-12 text-center opacity-70">Project Intent</h2>
+             <h2 className="text-xs md:text-sm font-black text-[#11d493] tracking-[0.6em] uppercase italic mb-16 text-center opacity-80">
+               Project Intent
+             </h2>
              <div className="text-center">
-               <p className="text-3xl md:text-5xl font-black text-white leading-[1.5] tracking-tighter whitespace-pre-line uppercase italic">
-                "{item.intent}"
+               <p className="text-3xl md:text-5xl font-black text-white leading-[1.6] tracking-tighter whitespace-pre-line uppercase italic">
+                {item.intent}
                </p>
              </div>
           </div>
