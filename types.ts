@@ -6,14 +6,13 @@ export interface PortfolioDetail {
 
 export interface PortfolioItem {
   id: string;
+  projectLabel?: string;
   title: string;
   subtitle: string;
   videoUrl: string;
   thumbnailUrl: string;
-  intent: string; // Core highlight
-  details: PortfolioDetail[]; // Dynamic details
-  ctaButtonName?: string;
-  ctaLink?: string;
+  intent: string;
+  details: PortfolioDetail[];
 }
 
 export interface PhilosophyData {
@@ -34,9 +33,9 @@ export interface ResumeData {
   email: string;
   phone: string;
   location: string;
-  github: string;
-  youtube: string;
-  soundcloud: string;
+  address: string; // 추가된 주소 필드
+  instagram: string; // youtube 대신 instagram
+  moreWorksUrl: string; // 포트폴리오 더보기 링크
   summary: string;
   techStack: {
     name: string;

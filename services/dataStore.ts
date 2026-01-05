@@ -1,13 +1,14 @@
 
 import { PortfolioItem, PhilosophyData, ResumeData } from '../types';
 
-const WORKS_KEY = 'portfolio_works_v3';
-const PHILOSOPHY_KEY = 'portfolio_philosophy_v2';
-const RESUME_KEY = 'portfolio_resume_v1';
+const WORKS_KEY = 'portfolio_works_v4';
+const PHILOSOPHY_KEY = 'portfolio_philosophy_v3';
+const RESUME_KEY = 'portfolio_resume_v2';
 
 const initialWorks: PortfolioItem[] = [
   {
     id: '001',
+    projectLabel: 'PROJECT 01',
     title: 'Cyberpunk Combat Sound Redesign',
     subtitle: 'FPS Action / Combat Scenario',
     videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
@@ -17,9 +18,7 @@ const initialWorks: PortfolioItem[] = [
       { label: 'CONTEXT', value: 'NEO-SEOUL FPS' },
       { label: 'METHOD', value: '3-LAYER SYSTEM' },
       { label: 'RESULT', value: '+90% RECOGNITION' }
-    ],
-    ctaButtonName: 'VIEW RESUME',
-    ctaLink: '/resume'
+    ]
   }
 ];
 
@@ -44,9 +43,9 @@ const initialResume: ResumeData = {
   email: "designer@example.com",
   phone: "010. 0000. 0000",
   location: "Seoul, Korea",
-  github: "#",
-  youtube: "#",
-  soundcloud: "#",
+  address: "서울특별시 강남구 테헤란로",
+  instagram: "https://instagram.com",
+  moreWorksUrl: "https://notion.so",
   summary: "Focused on crafting immersive audio experiences through reactive system design and detailed sound implementation.",
   techStack: [
     { name: "Cubase / Reaper", description: "Precision sound design and layering" },
