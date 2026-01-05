@@ -30,7 +30,7 @@ const Resume: React.FC = () => {
           <div className="space-y-8">
             <div className="space-y-2">
               <h1 className="text-6xl font-black tracking-tighter text-white uppercase italic leading-none">{data.name}</h1>
-              <p className="text-2xl font-black text-neutral-400 tracking-tighter uppercase italic">1997. 07. 28</p>
+              <p className="text-2xl font-black text-neutral-400 tracking-tighter uppercase italic">{data.birthDate || '1997. 07. 28'}</p>
             </div>
             
             <div className="space-y-4 border-t border-white/5 pt-8">
@@ -93,10 +93,10 @@ const Resume: React.FC = () => {
           </div>
         </aside>
 
-        {/* 메인 섹션: 경험 (전문 요약 섹션은 요청에 따라 제거됨) */}
+        {/* 메인 섹션: 경험 */}
         <main className="md:col-span-8 space-y-24">
           <section className="space-y-16">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#11d493] italic border-b border-[#11d493]/20 pb-4">경력 및 프로젝트 (Experience)</h2>
+            <h2 className="text-[10px] font-black uppercase tracking-widest text-[#11d493] italic border-b border-[#11d493]/20 pb-4">경력 및 프로젝트 (Experience)</h2>
             <div className="space-y-20">
               {data.experience.map((exp, i) => (
                 <div key={i} className="group relative">

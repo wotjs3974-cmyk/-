@@ -67,20 +67,20 @@ const Admin: React.FC = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black p-6">
-        <form onSubmit={handleLogin} className="glass p-10 rounded-none w-full max-w-md space-y-8 border-2 border-[#11d493]/20">
+      <div className="min-h-screen flex items-center justify-center bg-[#050505] p-6">
+        <form onSubmit={handleLogin} className="glass p-8 rounded-none w-full max-w-xs space-y-6 border border-[#11d493]/20 shadow-2xl">
           <div className="text-center">
-            <h2 className="text-4xl font-black text-[#11d493] tracking-tighter uppercase italic">관리자 접속</h2>
+            <h2 className="text-2xl font-black text-[#11d493] tracking-tight uppercase italic">ADMIN ACCESS</h2>
           </div>
           <input 
             type="password" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-none px-6 py-4 focus:border-[#11d493] transition-all outline-none text-center text-xl tracking-[0.5em]"
-            placeholder="••••"
+            className="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 focus:border-[#11d493] transition-all outline-none text-center text-lg text-white"
+            placeholder="PASSWORD"
             autoFocus
           />
-          <button className="w-full bg-[#11d493] text-black font-black py-4 rounded-none hover:brightness-110 tracking-widest uppercase">로그인</button>
+          <button className="w-full bg-[#11d493] text-black font-black py-3 rounded-none hover:brightness-110 tracking-widest uppercase text-sm transition-all">ENTER</button>
         </form>
       </div>
     );
@@ -167,13 +167,12 @@ const Admin: React.FC = () => {
           <div className="space-y-16 animate-in fade-in duration-500">
             <section className="glass p-10 border-l-4 border-[#11d493] space-y-10">
               <h2 className="text-2xl font-black text-white uppercase italic">기본 프로필</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <Input label="이름" value={resume.name} onChange={v => setResume({...resume, name: v})} />
+                <Input label="생년월일" value={resume.birthDate || ''} onChange={v => setResume({...resume, birthDate: v})} placeholder="1997. 07. 28" />
                 <Input label="이메일" value={resume.email} onChange={v => setResume({...resume, email: v})} />
                 <Input label="연락처" value={resume.phone} onChange={v => setResume({...resume, phone: v})} />
                 <Input label="위치 (도시)" value={resume.location} onChange={v => setResume({...resume, location: v})} />
-              </div>
-              <div className="grid md:grid-cols-1 gap-8">
                 <Input label="상세 주소" value={resume.address || ''} onChange={v => setResume({...resume, address: v})} placeholder="상세 주소를 입력하세요" />
               </div>
               <TextArea label="전문가 요약 (Summary)" value={resume.summary} onChange={v => setResume({...resume, summary: v})} className="min-h-[100px]" />
@@ -276,7 +275,7 @@ const Admin: React.FC = () => {
                         {work.details.map((detail, dIdx) => (
                           <div key={dIdx} className="glass p-8 space-y-6 relative group/detail border-white/10">
                             <button onClick={() => {
-                              const n = work.details.filter((_, idx) => idx !== dIdx);
+                              const n = work.details.filter((_, filterIdx) => filterIdx !== dIdx);
                               setWorks(works.map(w => w.id === work.id ? {...w, details: n} : w));
                             }} className="absolute -top-3 -right-3 w-8 h-8 bg-red-500 text-white flex items-center justify-center opacity-0 group-hover/detail:opacity-100 transition-all z-10"><X size={16}/></button>
                             <Input label="항목명" value={detail.label} onChange={v => {

@@ -40,6 +40,7 @@ const initialPhilosophy: PhilosophyData = {
 
 const initialResume: ResumeData = {
   name: "SOUND DESIGNER",
+  birthDate: "1997. 07. 28", // 기본값 설정
   email: "designer@example.com",
   phone: "010. 0000. 0000",
   location: "Seoul, Korea",

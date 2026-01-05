@@ -30,12 +30,13 @@ export interface PhilosophyData {
 
 export interface ResumeData {
   name: string;
+  birthDate?: string; // 추가된 생년월일 필드
   email: string;
   phone: string;
   location: string;
-  address: string; // 추가된 주소 필드
-  instagram: string; // youtube 대신 instagram
-  moreWorksUrl: string; // 포트폴리오 더보기 링크
+  address: string;
+  instagram: string;
+  moreWorksUrl: string;
   summary: string;
   techStack: {
     name: string;
