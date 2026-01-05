@@ -48,7 +48,7 @@ const Philosophy: React.FC = () => {
 
       {data.principles && data.principles.length > 0 && (
         <section className="mb-32">
-          <h2 className="text-xs font-black uppercase tracking-[0.4em] text-[#11d493] mb-12 italic">핵심 철학 (Core Philosophy)</h2>
+          <h2 className="text-base md:text-lg font-black uppercase tracking-[0.15em] text-[#11d493] mb-12 italic">핵심 철학 (Core Philosophy)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
             {data.principles.map((p, i) => (
               <div key={i} className="space-y-4">
@@ -65,7 +65,7 @@ const Philosophy: React.FC = () => {
 
       {data.process && data.process.length > 0 && (
         <section className="mb-32">
-          <h2 className="text-xs font-black uppercase tracking-[0.4em] text-[#11d493] mb-12 italic">작업 프로세스 (Working Process)</h2>
+          <h2 className="text-base md:text-lg font-black uppercase tracking-[0.15em] text-[#11d493] mb-12 italic">작업 프로세스 (Working Process)</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.process.map((item, idx) => (
               <div key={idx} className="glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between aspect-square group hover:border-[#11d493]/30 transition-all cursor-default">

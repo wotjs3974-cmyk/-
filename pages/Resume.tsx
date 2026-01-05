@@ -68,7 +68,7 @@ const Resume: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-[#11d493] italic">기술 스택 (Tech Stack)</h2>
+            <h2 className="text-sm font-black uppercase tracking-[0.15em] text-[#11d493] italic">기술 스택 (Tech Stack)</h2>
             <div className="space-y-8">
               {data.techStack.map((stack, i) => (
                 <div key={i} className="group border-l border-white/5 pl-6 hover:border-[#11d493]/30 transition-all">
@@ -80,7 +80,7 @@ const Resume: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-[#11d493] italic">학력 (Education)</h2>
+            <h2 className="text-sm font-black uppercase tracking-[0.15em] text-[#11d493] italic">학력 (Education)</h2>
             <div className="space-y-8">
               {data.education && data.education.map((edu, i) => (
                 <div key={i} className="group border-l border-white/5 pl-6 hover:border-[#11d493]/30 transition-all">
@@ -96,7 +96,7 @@ const Resume: React.FC = () => {
         {/* 메인 섹션: 경험 */}
         <main className="md:col-span-8 space-y-24">
           <section className="space-y-16">
-            <h2 className="text-[10px] font-black uppercase tracking-widest text-[#11d493] italic border-b border-[#11d493]/20 pb-4">경력 및 프로젝트 (Experience)</h2>
+            <h2 className="text-lg md:text-xl font-black uppercase tracking-[0.15em] text-[#11d493] italic border-b border-[#11d493]/20 pb-4">경력 및 프로젝트 (Experience)</h2>
             <div className="space-y-20">
               {data.experience.map((exp, i) => (
                 <div key={i} className="group relative">
