@@ -36,25 +36,25 @@ const Philosophy: React.FC = () => {
   };
 
   return (
-    <div className="pt-24 md:pt-32 pb-20 max-w-5xl mx-auto px-6">
-      <section className="mb-24 md:mb-32">
-        <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 leading-[1.1] md:leading-[0.95] tracking-tighter text-white uppercase whitespace-pre-line">
+    <div className="pt-32 pb-20 max-w-5xl mx-auto px-6">
+      <section className="mb-32">
+        <h1 className="text-5xl md:text-8xl font-black mb-8 leading-[0.95] tracking-tighter text-white uppercase whitespace-pre-line">
           {renderHighlightedTitle(data.heroTitle)}
         </h1>
-        <p className="text-lg md:text-2xl text-neutral-400 font-bold max-w-3xl leading-relaxed uppercase tracking-tight">
+        <p className="text-xl md:text-2xl text-neutral-400 font-bold max-w-3xl leading-relaxed uppercase tracking-tight">
           {data.heroSubtitle}
         </p>
       </section>
 
       {data.principles && data.principles.length > 0 && (
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-[12px] md:text-lg font-black uppercase tracking-[0.15em] text-[#11d493] mb-8 md:mb-12 italic">핵심 철학 (Core Philosophy)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-16">
+        <section className="mb-32">
+          <h2 className="text-base md:text-lg font-black uppercase tracking-[0.15em] text-[#11d493] mb-12 italic">핵심 철학 (Core Philosophy)</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
             {data.principles.map((p, i) => (
-              <div key={i} className="space-y-3 md:space-y-4">
+              <div key={i} className="space-y-4">
                 {getIcon(i)}
-                <h3 className="text-lg md:text-xl font-black uppercase tracking-tight">{p.title}</h3>
-                <p className="text-neutral-500 leading-relaxed text-xs md:text-sm">
+                <h3 className="text-xl font-black uppercase tracking-tight">{p.title}</h3>
+                <p className="text-neutral-500 leading-relaxed text-sm">
                   {p.desc}
                 </p>
               </div>
@@ -64,17 +64,17 @@ const Philosophy: React.FC = () => {
       )}
 
       {data.process && data.process.length > 0 && (
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-[12px] md:text-lg font-black uppercase tracking-[0.15em] text-[#11d493] mb-8 md:mb-12 italic">작업 프로세스 (Working Process)</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <section className="mb-32">
+          <h2 className="text-base md:text-lg font-black uppercase tracking-[0.15em] text-[#11d493] mb-12 italic">작업 프로세스 (Working Process)</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.process.map((item, idx) => (
-              <div key={idx} className="glass p-5 md:p-6 rounded-2xl border border-white/5 flex flex-col justify-between aspect-square group hover:border-[#11d493]/30 transition-all cursor-default">
-                <span className="text-3xl md:text-4xl font-black text-neutral-800 group-hover:text-[#11d493]/20 transition-colors">
+              <div key={idx} className="glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between aspect-square group hover:border-[#11d493]/30 transition-all cursor-default">
+                <span className="text-4xl font-black text-neutral-800 group-hover:text-[#11d493]/20 transition-colors">
                   {String(idx + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <h4 className="font-black text-base md:text-lg mb-1 uppercase">{item.title}</h4>
-                  <p className="text-[10px] md:text-xs text-neutral-500 leading-snug">{item.desc}</p>
+                  <h4 className="font-black text-lg mb-1 uppercase">{item.title}</h4>
+                  <p className="text-xs text-neutral-500 leading-snug">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -86,9 +86,9 @@ const Philosophy: React.FC = () => {
         <div className="flex justify-center">
           <Link 
             to="/resume" 
-            className="inline-flex items-center gap-3 md:gap-4 bg-[#11d493] text-black px-10 md:px-16 py-4 md:py-6 rounded-full font-black text-lg md:text-xl tracking-tighter hover:brightness-110 transition-all group shadow-[0_0_30px_rgba(17,212,147,0.2)]"
+            className="inline-flex items-center gap-4 bg-[#11d493] text-black px-16 py-6 rounded-full font-black text-xl tracking-tighter hover:brightness-110 transition-all group shadow-[0_0_30px_rgba(17,212,147,0.2)]"
           >
-            RESUME <ArrowRight size={18} className="md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+            RESUME <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>
