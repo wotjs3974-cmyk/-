@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Save, Plus, Trash2, FileText, X, Instagram, Briefcase, GraduationCap, Cpu, Workflow, Link as LinkIcon, Home } from 'lucide-react';
@@ -114,7 +113,6 @@ const Admin: React.FC = () => {
       </div>
 
       <div className="min-h-[500px]">
-        {/* 철학 탭 */}
         {activeTab === 'philosophy' && philosophy && (
           <div className="space-y-12 md:space-y-16 animate-in fade-in duration-500">
             <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
@@ -123,7 +121,7 @@ const Admin: React.FC = () => {
               </h2>
               <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                 <TextArea label="메인 타이틀 (*강조단어*)" value={philosophy.heroTitle} onChange={v => setPhilosophy({...philosophy, heroTitle: v})} />
-                <TextArea label="히어로 서브타이틀" value={philosophy.heroSubtitle} onChange={v => setPhilosophy({...philosophy, heroSubtitle: v})} />
+                <TextArea label="히어로 서브타이틀 (엔터 지원)" value={philosophy.heroSubtitle} onChange={v => setPhilosophy({...philosophy, heroSubtitle: v})} />
               </div>
             </section>
             
@@ -162,7 +160,6 @@ const Admin: React.FC = () => {
           </div>
         )}
 
-        {/* 이력서 탭 */}
         {activeTab === 'resume' && resume && (
           <div className="space-y-12 md:space-y-16 animate-in fade-in duration-500">
             <section className="glass p-6 md:p-10 border-l-4 border-[#11d493] space-y-8">
@@ -200,6 +197,23 @@ const Admin: React.FC = () => {
 
             <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
               <div className="flex justify-between items-center mb-8">
+                <h2 className="text-xl md:text-2xl font-black text-white uppercase italic flex items-center gap-3"><GraduationCap size={20} className="text-[#11d493]"/> 학력 정보</h2>
+                <button onClick={() => setResume({...resume, education: [...(resume.education || []), { school: '', major: '', status: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                {(resume.education || []).map((edu, i) => (
+                  <div key={i} className="glass p-6 md:p-8 relative group border-white/5 space-y-4">
+                    <button onClick={() => setResume({...resume, education: resume.education.filter((_, idx) => idx !== i)})} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all z-20"><X size={14}/></button>
+                    <Input label="학교명" value={edu.school} onChange={v => { const n = [...resume.education]; n[i].school = v; setResume({...resume, education: n}); }} />
+                    <Input label="전공" value={edu.major} onChange={v => { const n = [...resume.education]; n[i].major = v; setResume({...resume, education: n}); }} />
+                    <Input label="상태 (졸업 등)" value={edu.status} onChange={v => { const n = [...resume.education]; n[i].status = v; setResume({...resume, education: n}); }} />
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
+              <div className="flex justify-between items-center mb-8">
                 <h2 className="text-xl md:text-2xl font-black text-white uppercase italic flex items-center gap-3"><Briefcase size={20} className="text-[#11d493]"/> 경력 및 프로젝트</h2>
                 <button onClick={() => setResume({...resume, experience: [...resume.experience, { title: '', period: '', description: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
               </div>
@@ -219,7 +233,6 @@ const Admin: React.FC = () => {
           </div>
         )}
 
-        {/* 포트폴리오 탭 */}
         {activeTab === 'works' && (
           <div className="space-y-12 md:space-y-16 animate-in fade-in duration-500">
             <button onClick={addWork} className="w-full py-12 md:py-20 glass border-dashed border-[#11d493]/30 flex flex-col items-center gap-4 md:gap-6 group hover:border-[#11d493] transition-all">
