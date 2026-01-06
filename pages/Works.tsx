@@ -75,9 +75,9 @@ const Works: React.FC = () => {
     <div className="min-h-screen bg-black flex flex-col pt-24 md:pt-32 pb-48 px-0 animate-in fade-in duration-700">
       <div className="max-w-6xl mx-auto w-full px-4 md:px-6">
         
-        {/* Project Navigation - Optimized Scroll for Mobile */}
-        <div className="mb-10 md:mb-16 flex justify-start md:justify-center w-full relative overflow-hidden">
-          <div className="w-full max-w-[800px]">
+        {/* Project Navigation - Centered for Mobile and Desktop */}
+        <div className="mb-10 md:mb-16 flex justify-center w-full relative overflow-hidden">
+          <div className="w-full max-w-[800px] flex justify-center">
             <div 
               ref={scrollContainerRef}
               className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 md:py-4 px-4 snap-x"
@@ -97,7 +97,7 @@ const Works: React.FC = () => {
                       ? 'bg-[#11d493]/20 border border-[#11d493] text-[#11d493]' 
                       : 'bg-white/[0.03] border border-white/5 text-neutral-600 hover:text-neutral-400 hover:border-white/10'
                   }`}>
-                    <span className="text-[9px] md:text-[11px] font-black tracking-widest uppercase italic whitespace-nowrap block">
+                    <span className="text-[8px] md:text-[11px] font-black tracking-widest uppercase italic whitespace-nowrap block">
                       {proj.projectLabel || `PROJECT ${String(idx + 1).padStart(2, '0')}`}
                     </span>
                   </div>
@@ -112,7 +112,7 @@ const Works: React.FC = () => {
           <h1 className="text-3xl md:text-7xl lg:text-8xl font-black text-white mb-4 md:mb-8 tracking-tighter leading-tight md:leading-none uppercase italic break-words">
             {item.title}
           </h1>
-          <p className="text-neutral-500 text-[9px] md:text-sm lg:text-base font-black tracking-[0.2em] md:tracking-[0.3em] uppercase italic opacity-80">
+          <p className="text-neutral-500 text-[8px] md:text-sm lg:text-base font-black tracking-[0.2em] md:tracking-[0.3em] uppercase italic opacity-80">
             {item.subtitle}
           </p>
         </div>
@@ -140,7 +140,7 @@ const Works: React.FC = () => {
         <div className="space-y-24 md:space-y-48 lg:space-y-64">
           {/* Section: Project Intent (Highlight) */}
           <div className="max-w-4xl mx-auto px-4">
-             <h2 className="text-[9px] md:text-xs font-black text-[#11d493] tracking-[0.5em] md:tracking-[0.6em] uppercase italic mb-12 md:mb-24 text-center opacity-80">
+             <h2 className="text-[8px] md:text-xs font-black text-[#11d493] tracking-[0.5em] md:tracking-[0.6em] uppercase italic mb-12 md:mb-24 text-center opacity-80">
                Project Intent
              </h2>
              <div className="text-center">
@@ -154,10 +154,10 @@ const Works: React.FC = () => {
           <div className="max-w-4xl mx-auto w-full space-y-12 md:space-y-24 border-t border-white/5 pt-16 md:pt-32">
             {item.details.map((detail, dIdx) => (
               <div key={dIdx} className="space-y-4 md:space-y-8 group border-l-2 border-white/10 pl-5 md:pl-10 hover:border-[#11d493]/40 transition-all duration-500">
-                <h3 className="text-base md:text-2xl lg:text-3xl font-black text-[#11d493] tracking-tight uppercase italic opacity-70 group-hover:opacity-100 transition-all">
+                <h3 className="text-sm md:text-2xl lg:text-3xl font-black text-[#11d493] tracking-tight uppercase italic opacity-70 group-hover:opacity-100 transition-all">
                   {detail.label || 'INFO'}
                 </h3>
-                <p className="text-xs md:text-base lg:text-lg font-normal text-neutral-400 leading-[1.6] md:leading-[1.8] uppercase tracking-wide group-hover:text-neutral-300 transition-colors whitespace-pre-line">
+                <p className="text-[10px] md:text-base lg:text-lg font-normal text-neutral-400 leading-[1.6] md:leading-[1.8] uppercase tracking-wide group-hover:text-neutral-300 transition-colors whitespace-pre-line">
                   {detail.value || 'N/A'}
                 </p>
               </div>
