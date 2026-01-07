@@ -14,29 +14,58 @@ const Philosophy: React.FC = () => {
 
   if (!data) return null;
 
-  const renderHighlightedTitle = (text: string) => {
+  // Responsive break logic:
+  // Mobile: Break after "몰입을" and "통해" (3 lines)
+  // Tablet/Desktop: Break after "소리를" (2 lines)
+  const renderResponsiveTitle = (text: string) => {
     const parts = text.split(/(\*[^*]+\*)/g);
+    
     return parts.map((part, i) => {
+      let isHighlighted = false;
+      let cleanPart = part;
+      
       if (part.startsWith('*') && part.endsWith('*')) {
-        return <span key={`part-${i}`} className="text-[#11d493]">{part.slice(1, -1)}</span>;
+        isHighlighted = true;
+        cleanPart = part.slice(1, -1);
       }
-      return part;
+
+      const words = cleanPart.split(' ');
+      
+      return (
+        <React.Fragment key={`part-${i}`}>
+          {words.map((word, wordIdx) => (
+            <React.Fragment key={`${i}-${wordIdx}`}>
+              <span className={isHighlighted ? "text-[#11d493]" : "text-white"}>
+                {word}
+              </span>
+              {wordIdx < words.length - 1 && ' '}
+              
+              {/* MOBILE BREAKS (3 lines) */}
+              {word === '몰입을' && <br className="block md:hidden" />}
+              {word === '통해' && <br className="block md:hidden" />}
+
+              {/* TABLET/DESKTOP BREAKS (2 lines) */}
+              {word === '소리를' && <br className="hidden md:block" />}
+            </React.Fragment>
+          ))}
+        </React.Fragment>
+      );
     });
   };
 
   return (
     <div className="pt-32 pb-48 max-w-6xl mx-auto px-6">
-      {/* 히어로 섹션 - 폰트 크기를 요청에 맞춰 약간 더 축소 (lg:9xl -> lg:8xl) */}
+      {/* Hero Section - Reduced font size to fit the design better: 10vw on mobile, 5.5vw on desktop */}
       <section className="mb-24 md:mb-32">
-        <h1 className="text-4xl md:text-7xl lg:text-8xl font-black mb-12 leading-[1.1] md:leading-[1.05] tracking-tighter text-white uppercase whitespace-pre-line">
-          {renderHighlightedTitle(data.heroTitle)}
+        <h1 className="text-[10vw] md:text-[5.5vw] font-black mb-12 leading-[1.1] tracking-tighter uppercase break-keep">
+          {renderResponsiveTitle(data.heroTitle)}
         </h1>
         <p className="text-lg md:text-2xl text-neutral-400 font-bold max-w-3xl leading-relaxed tracking-tight whitespace-pre-line">
           {data.heroSubtitle}
         </p>
       </section>
 
-      {/* 하단 이동 버튼 섹션 */}
+      {/* Navigation */}
       <section className="text-center pt-12 border-t border-white/5">
         <div className="flex justify-center">
           <Link 

@@ -101,7 +101,7 @@ const initialWorks: PortfolioItem[] = [
 ];
 
 const initialPhilosophy: PhilosophyData = {
-  heroTitle: "플레이의 *몰입*을 소리를\n통해 *확장*하고자 합니다.",
+  heroTitle: "플레이의 *몰입*을 소리를 통해 *확장*하고자 합니다.",
   heroSubtitle: "사운드는 눈에 띄지 않지만, 찰나의 순간을 분명한 인상으로 남깁니다.\n저는 그 짧은 감각이 기억으로 이어지는 방향을 지향합니다.\n\n사운드는 크기보다 맥락이 중요하다고 생각합니다.\n언제, 어떻게 들리는지가 플레이의 인상을 바꾼다고 믿습니다."
 };
 
@@ -150,7 +150,7 @@ const initialResume: ResumeData = {
       description: "게임 사운드 디자인 이론 및 효과음 제작 실습\n\nWwise / FMOD 기초 활용 및 인터랙티브 사운드 구조 이해\n\nUnity / Unreal Engine 연동을 통한 게임 오디오 구현 실습" 
     },
     { 
-      title: "NH&C (마케팅 회사)", 
+      title: "NH&C", 
       period: "24. 09 - 25. 02", 
       description: "기업 및 브랜드 홍보를 위한 마케팅 자료 제작 참여\n\n인스타그램, 블로그 콘텐츠 기획 및 제작\n\n상세페이지 구성 및 문구 작성 보조" 
     }
