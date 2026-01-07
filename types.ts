@@ -18,19 +18,11 @@ export interface PortfolioItem {
 export interface PhilosophyData {
   heroTitle: string;
   heroSubtitle: string;
-  principles: {
-    title: string;
-    desc: string;
-  }[];
-  process: {
-    title: string;
-    desc: string;
-  }[];
 }
 
 export interface ResumeData {
   name: string;
-  birthDate?: string; // 추가된 생년월일 필드
+  birthDate?: string;
   email: string;
   phone: string;
   location: string;

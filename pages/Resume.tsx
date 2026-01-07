@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Instagram, Copy, Check, ArrowRight, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,32 +27,32 @@ const Resume: React.FC = () => {
       <div className="grid md:grid-cols-12 gap-12 md:gap-20">
         {/* 사이드바: 인적 사항, 기술 스택, 학력 */}
         <aside className="md:col-span-4 space-y-16">
-          <div className="space-y-8">
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white uppercase italic leading-none">{data.name}</h1>
-              <p className="text-lg md:text-2xl font-black text-neutral-400 tracking-tighter uppercase italic">{data.birthDate || '1997. 07. 28'}</p>
+          <div className="space-y-10">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-7xl font-black tracking-tighter text-white uppercase italic leading-none">{data.name}</h1>
+              <p className="text-xl md:text-3xl font-black text-neutral-400 tracking-tighter uppercase italic">{data.birthDate}</p>
             </div>
             
-            <div className="space-y-4 border-t border-white/5 pt-8">
-              <div className="flex items-center gap-4 text-neutral-400 group overflow-hidden">
-                <Mail size={16} className="text-[#11d493] flex-shrink-0" />
-                <span className="text-xs md:text-sm font-bold truncate">{data.email}</span>
-                <button onClick={copyToClipboard} className="p-1 hover:bg-white/10 transition-colors flex-shrink-0">
-                  {copied ? <Check size={14} className="text-[#11d493]" /> : <Copy size={14} />}
+            <div className="space-y-5 border-t border-white/5 pt-10">
+              <div className="flex items-center gap-4 text-neutral-200 group">
+                <Mail size={20} className="text-[#11d493] flex-shrink-0" />
+                <span className="text-sm md:text-lg font-bold truncate tracking-tight">{data.email}</span>
+                <button onClick={copyToClipboard} className="p-1 text-neutral-500 hover:text-white transition-colors flex-shrink-0">
+                  {copied ? <Check size={16} className="text-[#11d493]" /> : <Copy size={16} />}
                 </button>
               </div>
-              <div className="flex items-center gap-4 text-neutral-400">
-                <Phone size={16} className="text-[#11d493]" />
-                <span className="text-xs md:text-sm font-bold">{data.phone}</span>
+              <div className="flex items-center gap-4 text-neutral-200">
+                <Phone size={20} className="text-[#11d493] flex-shrink-0" />
+                <span className="text-sm md:text-lg font-bold tracking-tight">{data.phone}</span>
               </div>
-              <div className="flex items-center gap-4 text-neutral-400">
-                <MapPin size={16} className="text-[#11d493]" />
-                <span className="text-xs md:text-sm font-bold">{data.location}</span>
+              <div className="flex items-center gap-4 text-neutral-200">
+                <MapPin size={20} className="text-[#11d493] flex-shrink-0" />
+                <span className="text-sm md:text-lg font-bold tracking-tight">{data.location}</span>
               </div>
               {data.address && (
-                <div className="flex items-center gap-4 text-neutral-400">
-                  <Home size={16} className="text-[#11d493]" />
-                  <span className="text-xs md:text-sm font-bold leading-snug">{data.address}</span>
+                <div className="flex items-center gap-4 text-neutral-200">
+                  <Home size={20} className="text-[#11d493] flex-shrink-0" />
+                  <span className="text-sm md:text-lg font-bold leading-snug tracking-tight">{data.address}</span>
                 </div>
               )}
             </div>
@@ -72,7 +73,7 @@ const Resume: React.FC = () => {
               {data.techStack.map((stack, i) => (
                 <div key={i} className="group border-l border-white/5 pl-6 hover:border-[#11d493]/30 transition-all">
                   <h4 className="text-white font-black mb-1 text-sm uppercase tracking-wider">{stack.name}</h4>
-                  <p className="text-xs text-neutral-500 leading-relaxed">{stack.description}</p>
+                  <p className="text-xs text-neutral-500 leading-relaxed whitespace-pre-line">{stack.description}</p>
                 </div>
               ))}
             </div>
@@ -84,7 +85,7 @@ const Resume: React.FC = () => {
               {data.education && data.education.map((edu, i) => (
                 <div key={i} className="group border-l border-white/5 pl-6 hover:border-[#11d493]/30 transition-all">
                   <h4 className="text-white font-black mb-1 text-sm uppercase tracking-wider">{edu.school}</h4>
-                  <p className="text-xs text-neutral-400 font-bold mb-1">{edu.major}</p>
+                  {edu.major && <p className="text-xs text-neutral-400 font-bold mb-1">{edu.major}</p>}
                   <p className="text-[10px] text-neutral-600 uppercase font-black">{edu.status}</p>
                 </div>
               ))}
@@ -116,7 +117,7 @@ const Resume: React.FC = () => {
           <div className="pt-20 border-t border-white/5 flex justify-center md:justify-start">
             <Link 
               to="/works" 
-              className="inline-flex items-center gap-6 bg-[#11d493] text-black px-12 md:px-20 py-6 md:py-8 font-black text-xl md:text-2xl tracking-tighter hover:scale-105 transition-all group italic"
+              className="inline-flex items-center gap-6 bg-[#11d493] text-black px-12 md:px-20 py-6 md:py-8 font-black text-xl md:text-2xl tracking-tighter hover:scale-105 transition-all group rounded-full"
             >
               WORKS <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
             </Link>

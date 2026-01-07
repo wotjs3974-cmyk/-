@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { getWorks, getResume } from '../services/dataStore';
@@ -160,7 +161,7 @@ const Works: React.FC = () => {
             {!isLast ? (
               <button 
                 onClick={nextProject}
-                className="group flex items-center gap-4 md:gap-6 bg-[#11d493] text-black px-8 md:px-16 py-5 md:py-8 font-black text-lg md:text-2xl tracking-tighter hover:scale-105 transition-all italic shadow-[0_0_30px_rgba(17,212,147,0.3)]"
+                className="group flex items-center gap-4 md:gap-6 bg-[#11d493] text-black px-8 md:px-16 py-5 md:py-8 font-black text-lg md:text-2xl tracking-tighter hover:scale-105 transition-all rounded-full shadow-[0_0_30px_rgba(17,212,147,0.3)]"
               >
                 NEXT PROJECT <ArrowRight size={20} className="md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
               </button>
@@ -170,9 +171,9 @@ const Works: React.FC = () => {
                   href={resume.moreWorksUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 md:gap-6 border-2 border-[#11d493] text-[#11d493] px-8 md:px-16 py-5 md:py-8 font-black text-lg md:text-2xl tracking-tighter hover:bg-[#11d493] hover:text-black transition-all italic shadow-[0_0_30px_rgba(17,212,147,0.1)]"
+                  className="group flex items-center gap-4 md:gap-6 border-2 border-[#11d493] text-[#11d493] px-8 md:px-16 py-5 md:py-8 font-black text-lg md:text-2xl tracking-tighter hover:bg-[#11d493] hover:text-black transition-all rounded-full shadow-[0_0_30px_rgba(17,212,147,0.1)]"
                 >
-                  MORE WORKS <ExternalLink size={20} className="md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
+                  MORE WORKS <ExternalLink size={20} className="md:w-6 md:h-6" />
                 </a>
               )
             )}

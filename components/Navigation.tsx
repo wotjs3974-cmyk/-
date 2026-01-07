@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Lock } from 'lucide-react';
+import { Settings } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -27,30 +27,35 @@ const Navigation: React.FC = () => {
           <span className="font-black text-lg md:text-xl tracking-tighter text-white hidden sm:inline">PORTFOLIO</span>
         </Link>
         
-        <div className="flex items-center gap-3 md:gap-10">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`relative text-[8px] md:text-[10px] font-black tracking-[0.1em] md:tracking-[0.2em] py-2 transition-all duration-300 ${
-                isActive(item.path) 
-                  ? 'text-white' 
-                  : 'text-neutral-500 hover:text-neutral-300'
-              }`}
-            >
-              {item.label}
-              <div 
-                className={`absolute bottom-0 left-0 h-0.5 bg-[#11d493] transition-all duration-300 ${
-                  isActive(item.path) ? 'w-full' : 'w-0'
+        <div className="flex items-center gap-4 md:gap-10">
+          <div className="flex items-center gap-3 md:gap-10">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`relative text-[8px] md:text-[10px] font-black tracking-[0.1em] md:tracking-[0.2em] py-2 transition-all duration-300 ${
+                  isActive(item.path) 
+                    ? 'text-white' 
+                    : 'text-neutral-500 hover:text-neutral-300'
                 }`}
-              />
-            </Link>
-          ))}
+              >
+                {item.label}
+                <div 
+                  className={`absolute bottom-0 left-0 h-0.5 bg-[#11d493] transition-all duration-300 ${
+                    isActive(item.path) ? 'w-full' : 'w-0'
+                  }`}
+                />
+              </Link>
+            ))}
+          </div>
+
+          {/* Admin Entry Button */}
           <Link 
             to="/admin" 
-            className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors text-neutral-500 ml-1"
+            className="p-2 text-neutral-600 hover:text-[#11d493] transition-colors"
+            title="Admin Settings"
           >
-            <Lock size={12} className="md:w-3.5 md:h-3.5" />
+            <Settings size={16} className="md:w-5 md:h-5" />
           </Link>
         </div>
       </div>

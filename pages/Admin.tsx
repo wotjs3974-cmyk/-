@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Save, Plus, Trash2, FileText, X, Instagram, Briefcase, GraduationCap, Cpu, Workflow, Link as LinkIcon, Home } from 'lucide-react';
+import { Save, Plus, Trash2, FileText, X, Briefcase, GraduationCap, Cpu } from 'lucide-react';
 import { getWorks, saveWorks, getPhilosophy, savePhilosophy, getResume, saveResume } from '../services/dataStore';
 import { PortfolioItem, PhilosophyData, ResumeData } from '../types';
 
@@ -122,39 +123,6 @@ const Admin: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                 <TextArea label="메인 타이틀 (*강조단어*)" value={philosophy.heroTitle} onChange={v => setPhilosophy({...philosophy, heroTitle: v})} />
                 <TextArea label="히어로 서브타이틀 (엔터 지원)" value={philosophy.heroSubtitle} onChange={v => setPhilosophy({...philosophy, heroSubtitle: v})} />
-              </div>
-            </section>
-            
-            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl md:text-2xl font-black text-white uppercase italic">핵심 원칙</h2>
-                <button onClick={() => setPhilosophy({...philosophy, principles: [...philosophy.principles, { title: '', desc: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {philosophy.principles.map((p, i) => (
-                  <div key={i} className="flex flex-col space-y-4 md:space-y-6 glass p-6 md:p-8 relative group border-white/5">
-                    <button onClick={() => setPhilosophy({...philosophy, principles: philosophy.principles.filter((_, idx) => idx !== i)})} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all z-20"><X size={14}/></button>
-                    <Input label="제목" value={p.title} onChange={v => { const n = [...philosophy.principles]; n[i].title = v; setPhilosophy({...philosophy, principles: n}); }} />
-                    <TextArea label="설명" value={p.desc} onChange={v => { const n = [...philosophy.principles]; n[i].desc = v; setPhilosophy({...philosophy, principles: n}); }} className="min-h-[120px]" />
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl md:text-2xl font-black text-white uppercase italic flex items-center gap-3"><Workflow size={20} className="text-[#11d493]"/> 작업 프로세스</h2>
-                <button onClick={() => setPhilosophy({...philosophy, process: [...philosophy.process, { title: '', desc: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                {philosophy.process.map((item, i) => (
-                  <div key={i} className="flex flex-col space-y-3 glass p-5 relative group border-white/5">
-                    <button onClick={() => setPhilosophy({...philosophy, process: philosophy.process.filter((_, idx) => idx !== i)})} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all z-20"><X size={14}/></button>
-                    <span className="text-2xl font-black text-neutral-800 italic">{String(i+1).padStart(2, '0')}</span>
-                    <Input label="단계 이름" value={item.title} onChange={v => { const n = [...philosophy.process]; n[i].title = v; setPhilosophy({...philosophy, process: n}); }} />
-                    <TextArea label="설명" value={item.desc} onChange={v => { const n = [...philosophy.process]; n[i].desc = v; setPhilosophy({...philosophy, process: n}); }} className="min-h-[80px]" />
-                  </div>
-                ))}
               </div>
             </section>
           </div>
