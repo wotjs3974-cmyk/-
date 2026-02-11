@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Save, Plus, Trash2, FileText, X, Briefcase, GraduationCap, Cpu } from 'lucide-react';
-import { getWorks, saveWorks, getPhilosophy, savePhilosophy, getResume, saveResume } from '../services/dataStore';
-import { PortfolioItem, PhilosophyData, ResumeData } from '../types';
+import { Save, Plus, Trash2, FileText, X } from 'lucide-react';
+import { getWorks, saveWorks, getPhilosophy, savePhilosophy } from '../services/dataStore';
+import { PortfolioItem, PhilosophyData } from '../types';
 
-type Tab = 'philosophy' | 'resume' | 'works';
+type Tab = 'philosophy' | 'works';
 
 const Admin: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +15,6 @@ const Admin: React.FC = () => {
   
   const [works, setWorks] = useState<PortfolioItem[]>([]);
   const [philosophy, setPhilosophy] = useState<PhilosophyData | null>(null);
-  const [resume, setResume] = useState<ResumeData | null>(null);
   
   const [editingWorkId, setEditingWorkId] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -24,7 +23,6 @@ const Admin: React.FC = () => {
     if (isAuthenticated) {
       setWorks(getWorks());
       setPhilosophy(getPhilosophy());
-      setResume(getResume());
     }
   }, [isAuthenticated]);
 
@@ -42,7 +40,6 @@ const Admin: React.FC = () => {
     try {
       saveWorks(works);
       if (philosophy) savePhilosophy(philosophy);
-      if (resume) saveResume(resume);
       
       await new Promise(r => setTimeout(r, 800));
       alert('데이터가 성공적으로 업데이트되었습니다.');
@@ -88,7 +85,6 @@ const Admin: React.FC = () => {
 
   const tabLabels: Record<Tab, string> = {
     philosophy: '철학',
-    resume: '이력서',
     works: '작업물'
   };
 
@@ -100,7 +96,7 @@ const Admin: React.FC = () => {
       </div>
 
       <div className="flex gap-1 mb-12 p-1 glass rounded-none w-full md:w-fit border border-white/10 overflow-x-auto no-scrollbar">
-        {(['philosophy', 'resume', 'works'] as Tab[]).map(tab => (
+        {(['philosophy', 'works'] as Tab[]).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -123,79 +119,6 @@ const Admin: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                 <TextArea label="메인 타이틀 (*강조단어*)" value={philosophy.heroTitle} onChange={v => setPhilosophy({...philosophy, heroTitle: v})} />
                 <TextArea label="히어로 서브타이틀 (엔터 지원)" value={philosophy.heroSubtitle} onChange={v => setPhilosophy({...philosophy, heroSubtitle: v})} />
-              </div>
-            </section>
-          </div>
-        )}
-
-        {activeTab === 'resume' && resume && (
-          <div className="space-y-12 md:space-y-16 animate-in fade-in duration-500">
-            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493] space-y-8">
-              <h2 className="text-xl md:text-2xl font-black text-white uppercase italic">기본 프로필</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <Input label="이름" value={resume.name} onChange={v => setResume({...resume, name: v})} />
-                <Input label="생년월일" value={resume.birthDate || ''} onChange={v => setResume({...resume, birthDate: v})} placeholder="1997. 07. 28" />
-                <Input label="이메일" value={resume.email} onChange={v => setResume({...resume, email: v})} />
-                <Input label="연락처" value={resume.phone} onChange={v => setResume({...resume, phone: v})} />
-                <Input label="위치 (도시)" value={resume.location} onChange={v => setResume({...resume, location: v})} />
-                <Input label="상세 주소" value={resume.address || ''} onChange={v => setResume({...resume, address: v})} />
-              </div>
-              <TextArea label="전문가 요약 (Summary)" value={resume.summary} onChange={v => setResume({...resume, summary: v})} className="min-h-[100px]" />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/5">
-                <Input label="인스타그램 링크" value={resume.instagram || ''} onChange={v => setResume({...resume, instagram: v})} />
-                <Input label="포트폴리오 더보기 링크" value={resume.moreWorksUrl || ''} onChange={v => setResume({...resume, moreWorksUrl: v})} />
-              </div>
-            </section>
-
-            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl md:text-2xl font-black text-white uppercase italic flex items-center gap-3"><Cpu size={20} className="text-[#11d493]"/> 기술 스택</h2>
-                <button onClick={() => setResume({...resume, techStack: [...resume.techStack, { name: '', description: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                {resume.techStack.map((tech, i) => (
-                  <div key={i} className="glass p-6 md:p-8 relative group border-white/5 space-y-4">
-                    <button onClick={() => setResume({...resume, techStack: resume.techStack.filter((_, idx) => idx !== i)})} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all z-20"><X size={14}/></button>
-                    <Input label="기술 / 도구명" value={tech.name} onChange={v => { const n = [...resume.techStack]; n[i].name = v; setResume({...resume, techStack: n}); }} />
-                    <TextArea label="상세 활용 내용" value={tech.description} onChange={v => { const n = [...resume.techStack]; n[i].description = v; setResume({...resume, techStack: n}); }} className="min-h-[80px]" />
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl md:text-2xl font-black text-white uppercase italic flex items-center gap-3"><GraduationCap size={20} className="text-[#11d493]"/> 학력 정보</h2>
-                <button onClick={() => setResume({...resume, education: [...(resume.education || []), { school: '', major: '', status: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                {(resume.education || []).map((edu, i) => (
-                  <div key={i} className="glass p-6 md:p-8 relative group border-white/5 space-y-4">
-                    <button onClick={() => setResume({...resume, education: resume.education.filter((_, idx) => idx !== i)})} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all z-20"><X size={14}/></button>
-                    <Input label="학교명" value={edu.school} onChange={v => { const n = [...resume.education]; n[i].school = v; setResume({...resume, education: n}); }} />
-                    <Input label="전공" value={edu.major} onChange={v => { const n = [...resume.education]; n[i].major = v; setResume({...resume, education: n}); }} />
-                    <Input label="상태 (졸업 등)" value={edu.status} onChange={v => { const n = [...resume.education]; n[i].status = v; setResume({...resume, education: n}); }} />
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="glass p-6 md:p-10 border-l-4 border-[#11d493]">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl md:text-2xl font-black text-white uppercase italic flex items-center gap-3"><Briefcase size={20} className="text-[#11d493]"/> 경력 및 프로젝트</h2>
-                <button onClick={() => setResume({...resume, experience: [...resume.experience, { title: '', period: '', description: '' }]})} className="p-2 md:p-3 bg-white/5 hover:bg-[#11d493] hover:text-black transition-all"><Plus size={18}/></button>
-              </div>
-              <div className="space-y-8">
-                {resume.experience.map((exp, i) => (
-                  <div key={i} className="glass p-6 md:p-8 relative group border-white/5 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <button onClick={() => setResume({...resume, experience: resume.experience.filter((_, idx) => idx !== i)})} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all z-20"><X size={14}/></button>
-                    <Input label="역할" value={exp.title} onChange={v => { const n = [...resume.experience]; n[i].title = v; setResume({...resume, experience: n}); }} />
-                    <Input label="기간" value={exp.period} onChange={v => { const n = [...resume.experience]; n[i].period = v; setResume({...resume, experience: n}); }} />
-                    <div className="md:col-span-3">
-                      <TextArea label="상세 설명" value={exp.description} onChange={v => { const n = [...resume.experience]; n[i].description = v; setResume({...resume, experience: n}); }} className="min-h-[100px]" />
-                    </div>
-                  </div>
-                ))}
               </div>
             </section>
           </div>

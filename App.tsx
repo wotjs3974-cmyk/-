@@ -3,7 +3,6 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Philosophy from './pages/Philosophy';
-import Resume from './pages/Resume';
 import Works from './pages/Works';
 import Admin from './pages/Admin';
 
@@ -15,7 +14,6 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<Philosophy />} />
-            <Route path="/resume" element={<Resume />} />
             <Route path="/works" element={<Works />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>

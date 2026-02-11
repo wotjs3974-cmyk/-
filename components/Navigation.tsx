@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Settings } from 'lucide-react';
@@ -7,7 +8,6 @@ const Navigation: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'PHILOSOPHY' },
-    { path: '/resume', label: 'RESUME' },
     { path: '/works', label: 'WORKS' },
   ];
 

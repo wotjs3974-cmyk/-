@@ -69,10 +69,10 @@ const Philosophy: React.FC = () => {
       <section className="text-center pt-12 border-t border-white/5">
         <div className="flex justify-center">
           <Link 
-            to="/resume" 
+            to="/works" 
             className="inline-flex items-center gap-4 bg-[#11d493] text-black px-10 md:px-16 py-5 md:py-6 rounded-full font-black text-lg md:text-xl tracking-tighter hover:brightness-110 transition-all group shadow-[0_0_30px_rgba(17,212,147,0.2)]"
           >
-            RESUME <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            VIEW WORKS <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>
