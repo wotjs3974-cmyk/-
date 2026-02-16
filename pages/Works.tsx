@@ -105,8 +105,8 @@ const Works: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-16 md:mb-24 text-center">
-          <h1 className="text-3xl md:text-7xl lg:text-8xl font-black text-white mb-6 md:mb-8 tracking-tighter leading-none uppercase italic">
+        <div className="mb-12 md:mb-16 text-center">
+          <h1 className="text-3xl md:text-7xl lg:text-8xl font-black text-white mb-4 md:mb-6 tracking-tighter leading-none uppercase italic">
             {item.title}
           </h1>
           <p className="text-neutral-500 text-[9px] md:text-sm lg:text-base font-black tracking-[0.3em] uppercase italic opacity-80 px-4">
@@ -114,7 +114,7 @@ const Works: React.FC = () => {
           </p>
         </div>
 
-        <div className="w-full aspect-[16/9] bg-neutral-900 rounded-none overflow-hidden border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.8)] mb-24 md:mb-48 relative group">
+        <div className="w-full aspect-[16/9] bg-neutral-900 rounded-none overflow-hidden border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.8)] mb-12 md:mb-20 relative group">
           <div className="absolute inset-0 bg-[#11d493]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10"></div>
           {embedUrl ? (
             <iframe 
@@ -132,9 +132,9 @@ const Works: React.FC = () => {
           )}
         </div>
 
-        <div className="space-y-32 md:space-y-48 lg:space-y-64">
+        <div className="space-y-16 md:space-y-24">
           <div className="max-w-4xl mx-auto px-4">
-             <h2 className="text-[9px] md:text-xs font-black text-[#11d493] tracking-[0.6em] uppercase italic mb-16 md:mb-24 text-center opacity-80">
+             <h2 className="text-[9px] md:text-xs font-black text-[#11d493] tracking-[0.6em] uppercase italic mb-3 md:mb-4 text-center opacity-80">
                Project Intent
              </h2>
              <div className="text-center">
@@ -144,9 +144,9 @@ const Works: React.FC = () => {
              </div>
           </div>
 
-          <div className="max-w-4xl mx-auto w-full space-y-16 md:space-y-24 border-t border-white/5 pt-20 md:pt-32">
+          <div className="max-w-4xl mx-auto w-full space-y-12 md:space-y-16 border-t border-white/5 pt-12 md:pt-16">
             {item.details.map((detail, dIdx) => (
-              <div key={dIdx} className="space-y-4 md:space-y-8 group border-l-2 border-white/10 pl-6 md:pl-10 hover:border-[#11d493]/40 transition-all duration-500">
+              <div key={dIdx} className="space-y-3 md:space-y-5 group border-l-2 border-white/10 pl-6 md:pl-10 hover:border-[#11d493]/40 transition-all duration-500">
                 <h3 className="text-base md:text-2xl lg:text-3xl font-black text-[#11d493] tracking-tight uppercase italic opacity-70 group-hover:opacity-100 transition-all">
                   {detail.label || 'INFO'}
                 </h3>
@@ -157,7 +157,7 @@ const Works: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex flex-col items-center gap-10 pt-16 md:pt-24">
+          <div className="flex flex-col items-center gap-10 pt-8 md:pt-12">
             {!isLast ? (
               <button 
                 onClick={nextProject}

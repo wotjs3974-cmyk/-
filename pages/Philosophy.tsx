@@ -54,9 +54,9 @@ const Philosophy: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 pb-48 max-w-6xl mx-auto px-6">
+    <div className="pt-32 pb-16 md:pb-24 max-w-6xl mx-auto px-6">
       {/* Hero Section - Reduced font size to fit the design better: 10vw on mobile, 5.5vw on desktop */}
-      <section className="mb-24 md:mb-32">
+      <section className="mb-16 md:mb-24">
         <h1 className="text-[10vw] md:text-[5.5vw] font-black mb-12 leading-[1.1] tracking-tighter uppercase break-keep">
           {renderResponsiveTitle(data.heroTitle)}
         </h1>
