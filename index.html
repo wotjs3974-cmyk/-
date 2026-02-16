@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -69,20 +70,38 @@
             font-family: 'Pretendard', sans-serif !important;
         }
     </style>
-<script type="importmap">
+
+    <!-- Import Map -->
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@google/genai": "https://esm.sh/@google/genai",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
   }
 }
 </script>
+
+    <!-- Babel Standalone for TSX support in browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Process Shim for API Keys and Environment Variables -->
+    <script>
+        window.process = {
+            env: {
+                API_KEY: "" // Will be handled by the execution environment
+            }
+        };
+    </script>
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="index.tsx"></script>
+    <!-- Load index.tsx via Babel to bypass MIME type issues and compile TSX on the fly -->
+    <script type="text/babel" data-type="module" src="index.tsx"></script>
 </body>
 </html>
